@@ -7,6 +7,6 @@ Using Face Recognition Algorithm to do some automation, such as avoid others pee
 
 Download the model from here:
 
-[Keras FaceNet Pre-Trained Model](https://drive.google.com/open?id=1pwQ3H4aJ8a6yyJHZkTwtjcL4wYWQb7bn)
+[Keras FaceNet Pre-Trained Model](https://www.icloud.com/iclouddrive/0TB3cdTyzaEv9cXbd1IZythmg#facenet_keras)
 
 and place it to `automation_faceRecognition/model`
