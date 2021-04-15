@@ -13,6 +13,7 @@ while(True):
     ret, frame = capture.read()
     frame = cv2.flip(frame,1)
     frame = cv2.resize(frame, (600, 400))
+    frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
     boxes = detector.detect_faces(frame)
     if boxes:
         box = boxes[0]['box']
@@ -21,7 +22,7 @@ while(True):
 
         if conf > 0.5:
             cv2.rectangle(frame, (x, y), (x+w, y+h), (255, 255, 255), 1)
-    cv2.imshow("video", frame)
+    cv2.imshow("webcam", frame)
     if cv2.waitKey(25) & 0xFF == ord('q'):
         break
 cv2.destroyAllWindows()
