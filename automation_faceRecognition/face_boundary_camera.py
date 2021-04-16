@@ -22,7 +22,6 @@ while(True):
     boxes = detector.detect_faces(frame)
     if boxes:
         box = boxes[0]['box']
-        print("box: ", str(box))
         face_image = get_face_array(frame, box)
         conf = boxes[0]['confidence']
         x, y, w, h = box[0], box[1], box[2], box[3]
