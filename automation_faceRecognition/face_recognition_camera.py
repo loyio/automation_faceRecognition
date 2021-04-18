@@ -97,6 +97,7 @@ while(True):
         embed = K.eval(face_encode)
         model = tf.keras.models.load_model('model/face_classifier_model.h5')
         person = model.predict(embed)
+        print("person probability: "+str(person))
         name=person_rep[np.argmax(person)]
         conf = boxes[0]['confidence']
         x, y, w, h = box[0], box[1], box[2], box[3]

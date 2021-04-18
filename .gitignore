@@ -127,3 +127,16 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+.DS_Store
+*.h5
+
+# private images
+automation_faceRecognition/Images/
+automation_faceRecognition/Images_crop/
+automation_faceRecognition/Images_test/
+automation_faceRecognition/Image_test_crop/
+*.jpg
+
+# numpy file
+*.npy
+

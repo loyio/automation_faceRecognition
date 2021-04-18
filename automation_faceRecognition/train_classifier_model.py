@@ -126,7 +126,7 @@ classifier_model.add(Dense(units=10,kernel_initializer='glorot_uniform'))
 classifier_model.add(BatchNormalization())
 classifier_model.add(Activation('tanh'))
 classifier_model.add(Dropout(0.2))
-classifier_model.add(Dense(units=6,kernel_initializer='he_uniform'))
+classifier_model.add(Dense(units=2,kernel_initializer='he_uniform'))
 classifier_model.add(Activation('softmax'))
 classifier_model.compile(loss=tf.keras.losses.SparseCategoricalCrossentropy(),optimizer='nadam',metrics=['accuracy'])
 
