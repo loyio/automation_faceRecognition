@@ -1,10 +1,13 @@
 import cv2
 import time
 import tensorflow as tf
-import numpy as np
+from numpy import asarray, expand_dims
 import sys
 from api import *
 from PIL import Image
+from keras_vggface.vggface import VGGFace
+from keras_vggface.utils import preprocess_input
+from keras_vggface.utils import decode_predictions
 #from matplotlib import pyplot
 
 sys.path.append("..")
@@ -23,6 +26,14 @@ while(True):
     if boxes:
         box = boxes[0]['box']
         face_image = get_face_array(frame, box)
+        face_image = face_image.astype('float32')
+        face_sample = expand_dims(face_image, axis=0)
+        face_sample = preprocess_input(face_sample, version=2)
+        model = VGGFace(model='resnet50')
+        yhat = model.predict(face_sample)
+        results = decode_predictions(yhat)
+        for result in results[0]:
+            print("%s: %.3f%%"%(result[0], result[1]*100))
         conf = boxes[0]['confidence']
         x, y, w, h = box[0], box[1], box[2], box[3]
         if conf > 0.5:

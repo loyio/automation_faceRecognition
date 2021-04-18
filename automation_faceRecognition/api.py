@@ -1,8 +1,31 @@
 from PIL import Image
 from numpy import asarray
+import matplotlib.pyplot
+import os
 import cv2
+import sys
+
+sys.path.append("..")
+from mtcnn.mtcnn import MTCNN
 
 
+def mkdir(path):
+	folder = os.path.exists(path)
+	if not folder:                   
+		os.makedirs(path)
+		print("create folder success!!!")
+	else:
+		print("create folder failed!!!")
+
+def get_face_frame_box(face_image):
+    detector = MTCNN()
+    results = detector.detect_faces(face_image)
+    if results:
+        return results[0]['box']
+    else:
+        return []
+
+# get face rectangle from input image
 def get_face_array(image_frame, face_frame_box, required_size=(224, 224)):
     x1, y1, width, height = face_frame_box
     x2, y2 = x1+width, y1+height
@@ -33,3 +56,6 @@ def merge_image(back, front, x,y):
     result[y1:y2, x1:x2, 3:4] = (alpha_front + alpha_back) / (1 + alpha_front*alpha_back) * 255
 
     return result
+
+
+    
