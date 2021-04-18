@@ -1,3 +1,6 @@
+# MIT License
+# Copyright (c) 2021 Loyio
+
 import numpy as np
 import tensorflow as tf
 from tensorflow import keras

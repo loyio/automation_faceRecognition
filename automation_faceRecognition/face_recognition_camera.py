@@ -1,3 +1,6 @@
+# MIT License
+# Copyright (c) 2021 Loyio
+
 import cv2
 import time
 import tensorflow as tf

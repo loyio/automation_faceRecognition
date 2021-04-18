@@ -1,3 +1,6 @@
+# MIT License
+# Copyright (c) 2021 Loyio
+
 import os
 from api import get_face_frame_box, get_face_array, mkdir
 import numpy as np

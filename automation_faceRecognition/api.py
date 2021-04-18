@@ -1,3 +1,6 @@
+# MIT License
+# Copyright (c) 2021 Loyio
+
 from PIL import Image
 from numpy import asarray
 import matplotlib.pyplot
@@ -8,7 +11,7 @@ import sys
 sys.path.append("..")
 from mtcnn.mtcnn import MTCNN
 
-
+# make directory
 def mkdir(path):
 	folder = os.path.exists(path)
 	if not folder:                   
@@ -17,6 +20,7 @@ def mkdir(path):
 	else:
 		print("create folder failed!!!")
 
+# get face_frame parameter use MTCNN detect_faces
 def get_face_frame_box(face_image):
     detector = MTCNN()
     results = detector.detect_faces(face_image)
@@ -35,6 +39,8 @@ def get_face_array(image_frame, face_frame_box, required_size=(224, 224)):
     face_array = asarray(image)
     return face_array
 
+
+# merge image
 def merge_image(back, front, x,y):
     if back.shape[2] == 3:
         back = cv2.cvtColor(back, cv2.COLOR_BGR2BGRA)

@@ -1,3 +1,6 @@
+# MIT License
+# Copyright (c) 2021 Loyio
+
 import cv2
 from api import mkdir
 import sys
