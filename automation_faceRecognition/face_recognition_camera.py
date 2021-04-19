@@ -28,10 +28,7 @@ time.sleep(1)
 while(True):
     ret, frame = capture.read()
     frame = cv2.flip(frame,1)
-    try:
-      frame = cv2.resize(frame, (600, 400))
-    except cv2.error as e:
-      print('Invalid frame!')
+    frame = cv2.resize(frame, (600, 400))
     box = get_face_frame_box(frame)
     if len(box) != 0:
         face_image = get_face_array(frame, box)
