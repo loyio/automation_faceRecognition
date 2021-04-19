@@ -3,13 +3,14 @@
 
 import numpy as np
 import os
-from api import vgg_face
+from api import vgg_face, LossHistory 
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense,Dropout,Softmax,Flatten,Activation,BatchNormalization
 from tensorflow.keras.preprocessing.image import load_img,img_to_array
 from tensorflow.keras.applications.imagenet_utils import preprocess_input
 import tensorflow.keras.backend as K
 import tensorflow as tf
+import matplotlib.pyplot as plt 
 
 
 
@@ -87,8 +88,11 @@ classifier_model.add(Dense(units=2,kernel_initializer='he_uniform'))
 classifier_model.add(Activation('softmax'))
 classifier_model.compile(loss=tf.keras.losses.SparseCategoricalCrossentropy(),optimizer='nadam',metrics=['accuracy'])
 
-classifier_model.fit(x_train,y_train,epochs=100,validation_data=(x_test,y_test))
+history = LossHistory()
 
+history_vgg = classifier_model.fit(x_train,y_train,epochs=100,validation_data=(x_test,y_test), callbacks=[history])
+
+history.loss_plot('epoch')
 
 # Save model for later use
 tf.keras.models.save_model(classifier_model,'model/face_classifier_model.h5')
